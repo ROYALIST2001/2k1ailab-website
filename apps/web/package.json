@@ -1,0 +1,34 @@
+{
+  "name": "@company/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Layer 4 — presentation. Next.js site and the composition root.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@company/application": "*",
+    "@company/contracts": "*",
+    "@company/domain": "*",
+    "@company/infrastructure": "*",
+    "@company/ui": "*",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "server-only": "^0.0.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@company/config": "*",
+    "@next/env": "^15.1.6",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "tailwindcss": "^4.0.0"
+  }
+}

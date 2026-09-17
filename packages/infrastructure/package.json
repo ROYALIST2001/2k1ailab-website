@@ -1,0 +1,20 @@
+{
+  "name": "@company/infrastructure",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Layer 3 — adapters implementing the application's ports. Nothing depends on this except the composition root.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@company/application": "*",
+    "@company/domain": "*",
+    "zod": "^3.24.1"
+  }
+}

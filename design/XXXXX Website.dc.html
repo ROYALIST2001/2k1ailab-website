@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: linear-gradient(160deg, oklch(0.14 0.035 262) 0%, oklch(0.18 0.045 262) 55%, oklch(0.15 0.035 262) 100%); font-family: Archivo, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: oklch(0.96 0.01 262); text-decoration: none; transition: color 0.2s ease; }
+  a:hover { color: oklch(0.78 0.14 70); }
+  * { box-sizing: border-box; }
+  @keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-20px, 24px) scale(1.06); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .reveal { transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal-hidden { opacity: 0; transform: translateY(26px); }
+  .marquee-track { animation: marquee 26s linear infinite; }
+  .motion-paused { animation-play-state: paused; }
+  .motion-paused.reveal-hidden { opacity: 1; transform: none; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: linear-gradient(160deg, oklch(0.14 0.035 262) 0%, oklch(0.18 0.045 262) 55%, oklch(0.15 0.035 262) 100%); color: oklch(0.96 0.01 262); font-size: 17px; line-height: 1.5;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; border-bottom: 1px solid oklch(0.3 0.045 262); position: sticky; top: 0; background: oklch(0.14 0.035 262 / 0.85); backdrop-filter: blur(12px); z-index: 10;">
+    <a href="#top" style="font-size: 20px; font-weight: 600; letter-spacing: 0.14em;">XXXXX</a>
+    <nav style="display: flex; align-items: center; gap: 22px; font-size: 14px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; white-space: nowrap;">
+      <a href="#top" style="color: oklch(0.72 0.025 262); transition: color 0.2s ease, transform 0.2s ease;" style-hover="color: oklch(0.96 0.01 262); transform: translateY(-1px);">Home</a>
+      <a href="#services" style="color: oklch(0.72 0.025 262); transition: color 0.2s ease, transform 0.2s ease;" style-hover="color: oklch(0.96 0.01 262); transform: translateY(-1px);">Services</a>
+      <a href="#process" style="color: oklch(0.72 0.025 262); transition: color 0.2s ease, transform 0.2s ease;" style-hover="color: oklch(0.96 0.01 262); transform: translateY(-1px);">Process</a>
+      <a href="#faq" style="color: oklch(0.72 0.025 262); transition: color 0.2s ease, transform 0.2s ease;" style-hover="color: oklch(0.96 0.01 262); transform: translateY(-1px);">FAQ</a>
+      <a href="#careers" style="color: oklch(0.72 0.025 262); transition: color 0.2s ease, transform 0.2s ease;" style-hover="color: oklch(0.96 0.01 262); transform: translateY(-1px);">Careers</a>
+      <a href="#contact" style="background: oklch(0.74 0.15 70); color: oklch(0.16 0.035 262); padding: 10px 20px; border-radius: 100px; flex-shrink: 0; transition: background 0.2s ease, transform 0.2s ease;" style-hover="background: oklch(0.8 0.14 70); transform: translateY(-1px);">Contact</a>
+    </nav>
+  </header>
+
+  <section id="top" style="position: relative; padding: 150px 48px 110px; max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; overflow: hidden;">
+    <div style="position: absolute; top: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: oklch(0.7 0.15 70 / 0.14); filter: blur(80px); animation: drift 16s ease-in-out infinite; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -140px; right: 8%; width: 320px; height: 320px; border-radius: 50%; background: oklch(0.5 0.06 262 / 0.4); filter: blur(90px); animation: drift 20s ease-in-out infinite reverse; pointer-events: none;"></div>
+
+    <div style="position: relative; z-index: 1;">
+      <div style="display: inline-flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.74 0.15 70); margin-bottom: 32px; padding: 8px 16px; border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; white-space: nowrap; animation: fadeUp 0.7s ease both;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span>
+        Software · AI · IoT
+      </div>
+      <h1 style="font-size: 72px; line-height: 1.03; font-weight: 500; letter-spacing: -0.03em; margin: 0 0 28px; text-wrap: pretty; animation: fadeUp 0.7s ease 0.08s both;">We build software for your business.</h1>
+      <p style="font-size: 20px; line-height: 1.6; color: oklch(0.72 0.025 262); max-width: 32em; margin: 0 0 44px; text-wrap: pretty; animation: fadeUp 0.7s ease 0.16s both;">Apps, AI tools, and connected devices. We build it, and you talk to us directly, from start to finish.</p>
+      <div style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.24s both;">
+        <a href="mailto:{{ contactEmail }}" style="display: inline-flex; align-items: center; gap: 12px; background: oklch(0.74 0.15 70); color: oklch(0.16 0.035 262); padding: 17px 28px; font-size: 16px; font-weight: 500; border-radius: 10px; transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" style-hover="background: oklch(0.8 0.14 70); transform: translateY(-2px); box-shadow: 0 16px 32px oklch(0.7 0.15 70 / 0.3);">
+          Email us about your project
+          <span style="font-family: 'JetBrains Mono', monospace; display: inline-block;">→</span>
+        </a>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.68 0.025 262);">{{ contactEmail }}</span>
+      </div>
+    </div>
+
+    <div style="position: relative; z-index: 1; perspective: 1000px;">
+      <div style="position: absolute; inset: -28px; border: 1px dashed oklch(0.4 0.08 70 / 0.55); border-radius: 50%; animation: spinSlow 34s linear infinite; pointer-events: none;"></div>
+      <div onMouseMove="{{ onHeroMove }}" onMouseLeave="{{ onHeroLeave }}" style="position: relative; transform: {{ heroTiltStyle }}; transition: transform 0.2s ease-out; transform-style: preserve-3d; border-radius: 20px; box-shadow: 0 30px 60px -20px oklch(0.05 0.02 262 / 0.6);">
+        <image-slot id="hero-visual" style="width: 100%; height: 460px; display: block; border-radius: 20px; overflow: hidden;" shape="rounded" radius="20" placeholder="Drop a product or team photo"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <div style="position: relative; overflow: hidden; border-top: 1px solid oklch(0.3 0.045 262); border-bottom: 1px solid oklch(0.3 0.045 262); padding: 20px 0; background: oklch(0.155 0.035 262);">
+    <div class="{{ marqueeClass }}" style="display: flex; width: max-content; gap: 56px;">
+      <div style="display: flex; gap: 56px; flex-shrink: 0;">
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Software<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Design<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">AI<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Automation<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">IoT<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Support<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+      </div>
+      <div style="display: flex; gap: 56px; flex-shrink: 0;">
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Software<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Design<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">AI<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Automation<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">IoT<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+        <span style="display: inline-flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.68 0.025 262); white-space: nowrap;">Support<span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.74 0.15 70); display: inline-block;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <section id="services" style="padding: 100px 48px 110px; max-width: 1320px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 56px;">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.74 0.15 70);">01</span>
+      <h2 style="font-size: 15px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; color: oklch(0.68 0.025 262);">What we do</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+
+      <article class="reveal" onMouseMove="{{ moveHandlers.c1 }}" onMouseLeave="{{ leaveHandlers.c1 }}" style="position: relative; border-radius: 18px; border: 1px solid oklch(0.3 0.045 262); background: oklch(0.19 0.04 262); overflow: hidden;">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: {{ glow.c1 }};"></div>
+        <div style="position: relative; padding: 36px; transform: {{ tilt.c1 }}; transition: transform 0.15s ease-out; transform-style: preserve-3d;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.55 0.03 262); margin-bottom: 20px;">01</div>
+          <h3 style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px;">Building your product</h3>
+          <p style="margin: 0 0 22px; color: oklch(0.72 0.025 262); font-size: 16px; line-height: 1.55; text-wrap: pretty;">Whatever your customers or staff use every day, we design and build it, and keep it reliable as more people rely on it.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Web &amp; mobile apps</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Internal tools</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">APIs &amp; system integration</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal" onMouseMove="{{ moveHandlers.c2 }}" onMouseLeave="{{ leaveHandlers.c2 }}" style="position: relative; border-radius: 18px; border: 1px solid oklch(0.3 0.045 262); background: oklch(0.19 0.04 262); overflow: hidden;">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: {{ glow.c2 }};"></div>
+        <div style="position: relative; padding: 36px; transform: {{ tilt.c2 }}; transition: transform 0.15s ease-out; transform-style: preserve-3d;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.55 0.03 262); margin-bottom: 20px;">02</div>
+          <h3 style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px;">Making it smarter</h3>
+          <p style="margin: 0 0 22px; color: oklch(0.72 0.025 262); font-size: 16px; line-height: 1.55; text-wrap: pretty;">We add the kind of intelligence that reads, understands and answers using your own information, so it feels specific to your business, not generic.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Document &amp; chat assistants</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Search over your own data</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Model &amp; cost tuning</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal" onMouseMove="{{ moveHandlers.c3 }}" onMouseLeave="{{ leaveHandlers.c3 }}" style="position: relative; border-radius: 18px; border: 1px solid oklch(0.3 0.045 262); background: oklch(0.19 0.04 262); overflow: hidden;">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: {{ glow.c3 }};"></div>
+        <div style="position: relative; padding: 36px; transform: {{ tilt.c3 }}; transition: transform 0.15s ease-out; transform-style: preserve-3d;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.55 0.03 262); margin-bottom: 20px;">03</div>
+          <h3 style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px;">Taking the busywork off your plate</h3>
+          <p style="margin: 0 0 22px; color: oklch(0.72 0.025 262); font-size: 16px; line-height: 1.55; text-wrap: pretty;">Some jobs don't need a person, just careful software. We build assistants that handle the repetitive, multi-step work, with clear limits and a record of everything they do.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Workflow automation</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Support &amp; back-office agents</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Human approval steps</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal" onMouseMove="{{ moveHandlers.c4 }}" onMouseLeave="{{ leaveHandlers.c4 }}" style="position: relative; border-radius: 18px; border: 1px solid oklch(0.3 0.045 262); background: oklch(0.19 0.04 262); overflow: hidden;">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: {{ glow.c4 }};"></div>
+        <div style="position: relative; padding: 36px; transform: {{ tilt.c4 }}; transition: transform 0.15s ease-out; transform-style: preserve-3d;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.55 0.03 262); margin-bottom: 20px;">04</div>
+          <h3 style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px;">Connecting your equipment</h3>
+          <p style="margin: 0 0 22px; color: oklch(0.72 0.025 262); font-size: 16px; line-height: 1.55; text-wrap: pretty;">If it has a sensor or a switch, we can bring it online: readings shown clearly on a screen, and automatic action when something needs attention.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Device &amp; sensor connectivity</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Telemetry dashboards</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Alerts &amp; remote control</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal" onMouseMove="{{ moveHandlers.c5 }}" onMouseLeave="{{ leaveHandlers.c5 }}" style="position: relative; border-radius: 18px; border: 1px solid oklch(0.3 0.045 262); background: oklch(0.19 0.04 262); overflow: hidden;">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: {{ glow.c5 }};"></div>
+        <div style="position: relative; padding: 36px; transform: {{ tilt.c5 }}; transition: transform 0.15s ease-out; transform-style: preserve-3d;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.55 0.03 262); margin-bottom: 20px;">05</div>
+          <h3 style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px;">Design</h3>
+          <p style="margin: 0 0 22px; color: oklch(0.72 0.025 262); font-size: 16px; line-height: 1.55; text-wrap: pretty;">Before anything is built, we work out how it should look and feel: the screens, the flow, the details that make it easy to use.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Product design</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Prototypes</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Brand &amp; UI</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal" onMouseMove="{{ moveHandlers.c6 }}" onMouseLeave="{{ leaveHandlers.c6 }}" style="position: relative; border-radius: 18px; border: 1px solid oklch(0.3 0.045 262); background: oklch(0.19 0.04 262); overflow: hidden;">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: {{ glow.c6 }};"></div>
+        <div style="position: relative; padding: 36px; transform: {{ tilt.c6 }}; transition: transform 0.15s ease-out; transform-style: preserve-3d;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.55 0.03 262); margin-bottom: 20px;">06</div>
+          <h3 style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px;">Support &amp; upkeep</h3>
+          <p style="margin: 0 0 22px; color: oklch(0.72 0.025 262); font-size: 16px; line-height: 1.55; text-wrap: pretty;">Once it's live, we keep it running: fixing issues, applying updates, and making small improvements as your needs change.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Maintenance</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Hosting &amp; monitoring</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: oklch(0.74 0.15 70); border: 1px solid oklch(0.4 0.08 70); border-radius: 100px; padding: 6px 14px; white-space: nowrap;">Ongoing improvements</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="process" style="border-top: 1px solid oklch(0.3 0.045 262); padding: 100px 48px 110px; max-width: 1180px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 56px;">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.74 0.15 70);">02</span>
+      <h2 style="font-size: 15px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; color: oklch(0.68 0.025 262);">How we work</h2>
+    </div>
+    <div style="position: relative; display: flex; flex-direction: column;">
+      <div style="position: absolute; left: 38px; top: 30px; bottom: 30px; width: 1px; background: linear-gradient(to bottom, oklch(0.3 0.045 262), oklch(0.3 0.045 262) 90%, transparent); pointer-events: none;"></div>
+
+      <div class="reveal" style="position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 28px; padding: 22px 16px; border-radius: 14px; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: oklch(0.2 0.04 262); transform: translateX(6px);">
+        <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid oklch(0.4 0.08 70); background: oklch(0.19 0.04 262); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.74 0.15 70); flex-shrink: 0; position: relative; z-index: 1;">01</div>
+        <div style="padding-top: 6px;">
+          <h3 style="font-size: 22px; font-weight: 500; margin: 0 0 10px; letter-spacing: -0.01em;">Discovery</h3>
+          <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty; max-width: 46em;">You describe the problem in your own words. We ask questions until we understand it properly, and tell you what's worth building.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 28px; padding: 22px 16px; border-radius: 14px; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: oklch(0.2 0.04 262); transform: translateX(6px);">
+        <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid oklch(0.4 0.08 70); background: oklch(0.19 0.04 262); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.74 0.15 70); flex-shrink: 0; position: relative; z-index: 1;">02</div>
+        <div style="padding-top: 6px;">
+          <h3 style="font-size: 22px; font-weight: 500; margin: 0 0 10px; letter-spacing: -0.01em;">Scope &amp; design</h3>
+          <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty; max-width: 46em;">A written plan and, where needed, screens or mockups to agree on: what gets built, in what order, on what timeline, for what price. Fixed before work starts.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 28px; padding: 22px 16px; border-radius: 14px; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: oklch(0.2 0.04 262); transform: translateX(6px);">
+        <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid oklch(0.4 0.08 70); background: oklch(0.19 0.04 262); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.74 0.15 70); flex-shrink: 0; position: relative; z-index: 1;">03</div>
+        <div style="padding-top: 6px;">
+          <h3 style="font-size: 22px; font-weight: 500; margin: 0 0 10px; letter-spacing: -0.01em;">Development</h3>
+          <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty; max-width: 46em;">We build in short cycles and show you working software every week, so you can react early instead of at the end.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 28px; padding: 22px 16px; border-radius: 14px; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: oklch(0.2 0.04 262); transform: translateX(6px);">
+        <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid oklch(0.4 0.08 70); background: oklch(0.19 0.04 262); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.74 0.15 70); flex-shrink: 0; position: relative; z-index: 1;">04</div>
+        <div style="padding-top: 6px;">
+          <h3 style="font-size: 22px; font-weight: 500; margin: 0 0 10px; letter-spacing: -0.01em;">Testing</h3>
+          <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty; max-width: 46em;">Before anything reaches your users, we test it ourselves and fix what's broken.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 28px; padding: 22px 16px; border-radius: 14px; transition: background 0.25s ease, transform 0.25s ease;" style-hover="background: oklch(0.2 0.04 262); transform: translateX(6px);">
+        <div style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid oklch(0.4 0.08 70); background: oklch(0.19 0.04 262); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.74 0.15 70); flex-shrink: 0; position: relative; z-index: 1;">05</div>
+        <div style="padding-top: 6px;">
+          <h3 style="font-size: 22px; font-weight: 500; margin: 0 0 10px; letter-spacing: -0.01em;">Launch &amp; support</h3>
+          <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty; max-width: 46em;">At launch you get the code, the accounts and the documentation. We stay on for support if you want it, with no obligation to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="border-top: 1px solid oklch(0.3 0.045 262); padding: 100px 48px 110px; max-width: 1180px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 56px;">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.74 0.15 70);">03</span>
+      <h2 style="font-size: 15px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; color: oklch(0.68 0.025 262);">Common questions</h2>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="reveal" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; padding: 28px 16px; border-radius: 14px; transition: background 0.25s ease;" style-hover="background: oklch(0.2 0.04 262);">
+        <h3 style="font-size: 19px; font-weight: 500; margin: 0;">How do you price a project?</h3>
+        <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty;">We scope the work first and quote a fixed price for it. No hourly billing surprises. If the scope changes partway through, we tell you before it affects the price.</p>
+      </div>
+      <div class="reveal" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; padding: 28px 16px; border-radius: 14px; transition: background 0.25s ease;" style-hover="background: oklch(0.2 0.04 262);">
+        <h3 style="font-size: 19px; font-weight: 500; margin: 0;">Who will I be talking to?</h3>
+        <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty;">The people building your project, directly. No account managers relaying messages back and forth.</p>
+      </div>
+      <div class="reveal" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; padding: 28px 16px; border-radius: 14px; transition: background 0.25s ease;" style-hover="background: oklch(0.2 0.04 262);">
+        <h3 style="font-size: 19px; font-weight: 500; margin: 0;">Do you sign NDAs?</h3>
+        <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty;">Yes. Happy to sign one before we discuss any specifics of your project.</p>
+      </div>
+      <div class="reveal" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; padding: 28px 16px; border-radius: 14px; transition: background 0.25s ease;" style-hover="background: oklch(0.2 0.04 262);">
+        <h3 style="font-size: 19px; font-weight: 500; margin: 0;">What happens after launch?</h3>
+        <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty;">You get the code, the accounts, and the documentation. We're also available for ongoing support and maintenance if you want it, but you're never locked into that.</p>
+      </div>
+      <div class="reveal" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; padding: 28px 16px; border-radius: 14px; transition: background 0.25s ease;" style-hover="background: oklch(0.2 0.04 262);">
+        <h3 style="font-size: 19px; font-weight: 500; margin: 0;">How small a project will you take on?</h3>
+        <p style="margin: 0; color: oklch(0.72 0.025 262); text-wrap: pretty;">If it's well-defined and worth doing properly, we'll talk about it. Send us an email and we'll tell you honestly if we're the right fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="careers" style="border-top: 1px solid oklch(0.3 0.045 262); padding: 100px 48px 110px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; max-width: 1320px; margin: 0 auto;">
+    <image-slot id="careers-visual" class="reveal" style="width: 100%; height: 380px; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px -24px oklch(0.05 0.02 262 / 0.6);" shape="rounded" radius="20" placeholder="Drop a team or workspace photo"></image-slot>
+    <div class="reveal">
+      <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 28px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.74 0.15 70);">04</span>
+        <h2 style="font-size: 15px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; color: oklch(0.68 0.025 262);">Careers</h2>
+      </div>
+      <h3 style="font-size: 32px; font-weight: 500; letter-spacing: -0.015em; margin: 0 0 18px; text-wrap: pretty;">We're hiring.</h3>
+      <p style="margin: 0 0 32px; color: oklch(0.72 0.025 262); max-width: 34em; text-wrap: pretty;">We're growing our team and looking for people in software, AI and embedded systems who want to build things that ship. Send us a note with what you've worked on.</p>
+      <a href="mailto:{{ contactEmail }}?subject=Working%20at%20XXXXX" style="display: inline-flex; align-items: center; gap: 12px; background: oklch(0.74 0.15 70); color: oklch(0.16 0.035 262); padding: 15px 26px; font-size: 15px; font-weight: 500; border-radius: 10px; transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;" style-hover="background: oklch(0.8 0.14 70); transform: translateY(-2px); box-shadow: 0 16px 32px oklch(0.7 0.15 70 / 0.3);">
+        Apply now
+        <span style="font-family: 'JetBrains Mono', monospace;">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact" style="position: relative; overflow: hidden; border-radius: 32px 32px 0 0; margin: 0 24px; background: oklch(0.2 0.04 262); padding: 100px 56px 110px;">
+    <div style="position: absolute; top: -120px; right: -80px; width: 420px; height: 420px; border-radius: 50%; background: oklch(0.7 0.15 70 / 0.12); filter: blur(90px); animation: drift 18s ease-in-out infinite; pointer-events: none;"></div>
+    <div class="reveal" style="position: relative; max-width: 1180px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.74 0.15 70); margin-bottom: 40px;">Get in touch</div>
+      <h2 style="font-size: 56px; line-height: 1.08; font-weight: 500; letter-spacing: -0.025em; margin: 0 0 28px; max-width: 20em; text-wrap: pretty;">Tell us what you are trying to build.</h2>
+      <p style="font-size: 20px; color: oklch(0.72 0.025 262); max-width: 30em; margin: 0 0 48px; text-wrap: pretty;">One email is enough to start. Describe the problem, the systems you already run, and when you need it working. We reply within one working day.</p>
+      <a href="mailto:{{ contactEmail }}" style="display: inline-flex; align-items: center; gap: 14px; font-size: 34px; font-weight: 500; color: oklch(0.96 0.01 262); letter-spacing: -0.02em; border-bottom: 1px solid oklch(0.4 0.05 262); padding-bottom: 10px; transition: color 0.2s ease, border-color 0.2s ease, letter-spacing 0.2s ease;" style-hover="color: oklch(0.78 0.14 70); border-bottom-color: oklch(0.78 0.14 70); letter-spacing: 0em;">{{ contactEmail }}</a>
+      <sc-if value="{{ showAvailability }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 64px; display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: oklch(0.72 0.025 262);">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: oklch(0.78 0.16 150); display: inline-block;"></span>
+          Taking on new projects this quarter
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <footer style="padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: oklch(0.62 0.03 262);">
+    <span style="letter-spacing: 0.14em; color: oklch(0.96 0.01 262); font-family: Archivo, sans-serif; font-weight: 600; font-size: 16px;">XXXXX</span>
+    <span>© 2026 XXXXX. Software, AI and IoT.</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;hello@xxxxx.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { tilt: {}, heroTilt: null };
+
+  handleTilt = (id, e) => {
+    if (this.props.reduceMotion) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 12;
+    const rotateX = (0.5 - py) * 12;
+    this.setState((s) => ({ tilt: { ...s.tilt, [id]: { rotateX, rotateY, px, py } } }));
+  };
+  resetTilt = (id) => {
+    this.setState((s) => ({ tilt: { ...s.tilt, [id]: null } }));
+  };
+  handleHeroTilt = (e) => {
+    if (this.props.reduceMotion) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    this.setState({ heroTilt: { rotateX: (0.5 - py) * 8, rotateY: (px - 0.5) * 8 } });
+  };
+  resetHeroTilt = () => this.setState({ heroTilt: null });
+
+  componentDidMount() {
+    if (this.props.reduceMotion) return;
+    try {
+      const els = Array.from(document.querySelectorAll('.reveal'));
+      if (!('IntersectionObserver' in window) || els.length === 0) return;
+      els.forEach((el) => el.classList.add('reveal-hidden'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('reveal-hidden');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      els.forEach((el) => observer.observe(el));
+      this._observer = observer;
+      this._safety = setTimeout(() => els.forEach((el) => el.classList.remove('reveal-hidden')), 2200);
+    } catch (e) { /* fail safe: elements stay visible */ }
+  }
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    if (this._safety) clearTimeout(this._safety);
+  }
+
+  renderVals() {
+    const cardIds = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+    const tilt = {};
+    const glow = {};
+    const moveHandlers = {};
+    const leaveHandlers = {};
+    cardIds.forEach((id) => {
+      const t = this.state.tilt[id];
+      if (t) {
+        tilt[id] = `perspective(800px) rotateX(${t.rotateX}deg) rotateY(${t.rotateY}deg) translateZ(6px)`;
+        glow[id] = `radial-gradient(circle at ${t.px * 100}% ${t.py * 100}%, oklch(0.7 0.15 70 / 0.16), transparent 55%)`;
+      } else {
+        tilt[id] = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
+        glow[id] = 'transparent';
+      }
+      moveHandlers[id] = (e) => this.handleTilt(id, e);
+      leaveHandlers[id] = () => this.resetTilt(id);
+    });
+    const heroT = this.state.heroTilt;
+    const heroTiltStyle = heroT
+      ? `perspective(1000px) rotateX(${heroT.rotateX}deg) rotateY(${heroT.rotateY}deg) scale3d(1.02,1.02,1.02)`
+      : 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+
+    return {
+      contactEmail: this.props.contactEmail ?? "hello@xxxxx.com",
+      showAvailability: this.props.showAvailability ?? true,
+      marqueeClass: 'marquee-track' + (this.props.reduceMotion ? ' motion-paused' : ''),
+      tilt, glow, moveHandlers, leaveHandlers,
+      heroTiltStyle,
+      onHeroMove: this.handleHeroTilt,
+      onHeroLeave: this.resetHeroTilt
+    };
+  }
+}
+</script>
+</body>
+</html>

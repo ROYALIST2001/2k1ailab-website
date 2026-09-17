@@ -1,0 +1,15 @@
+{
+  "name": "@company/domain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Layer 1 — entities and business rules. Depends on nothing.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

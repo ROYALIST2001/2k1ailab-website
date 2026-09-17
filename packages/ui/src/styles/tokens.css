@@ -1,0 +1,306 @@
+/* ---------------------------------------------------------------------------
+ * Design tokens
+ *
+ * Ported verbatim from the source design (`design/XXXXX Website.dc.html`). The
+ * palette is authored in oklch — keep it that way: the hue (262 = blue-black,
+ * 126 = lime) stays constant across a ramp while only lightness/chroma move,
+ * which is what makes the greys read as neutral against the accent.
+ *
+ * Consumed by importing this file after `@import 'tailwindcss'`. Any app that
+ * does so gets the whole visual language.
+ * ------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces, dark → light */
+  --color-canvas: oklch(0.14 0.035 262);
+  --color-canvas-mid: oklch(0.18 0.045 262);
+  --color-canvas-end: oklch(0.15 0.035 262);
+  --color-surface-marquee: oklch(0.155 0.035 262);
+  --color-surface: oklch(0.19 0.04 262);
+  --color-surface-raised: oklch(0.2 0.04 262);
+  /* The logo's #0B0D10 exactly. The marquee bar, and cards on light bands. */
+  --color-surface-deep: oklch(0.157 0.0075 258);
+
+  /* Text ramp, brightest → faintest */
+  --color-ink: oklch(0.96 0.01 262);
+  --color-ink-muted: oklch(0.72 0.025 262);
+  --color-ink-dim: oklch(0.68 0.025 262);
+  --color-ink-faint: oklch(0.62 0.03 262);
+  --color-ink-faintest: oklch(0.55 0.03 262);
+
+  /* Text that sits *on* `accent-fill` */
+  --color-on-accent: oklch(0.16 0.035 262);
+
+  /* Borders */
+  --color-line: oklch(0.3 0.045 262);
+  --color-line-soft: oklch(0.4 0.05 262);
+  --color-line-accent: oklch(0.45 0.1 126);
+
+  /* Accent (lime), in two roles. `accent` is for text and thin strokes and
+   * is allowed to darken on light bands for contrast; `accent-fill` is for
+   * solid shapes (buttons, glows) and is always the brand #B4F000 from the
+   * logo, paired with `on-accent`. On dark both are the same lime. */
+  --color-accent: oklch(0.881 0.2245 125.8);
+  --color-accent-hover: oklch(0.91 0.21 126);
+  --color-accent-link: oklch(0.86 0.21 126);
+  --color-accent-fill: oklch(0.881 0.2245 125.8);
+  --color-accent-fill-hover: oklch(0.91 0.21 126);
+
+  /* Status */
+  --color-positive: oklch(0.78 0.16 150);
+
+  /* Shadow base */
+  --color-shade: oklch(0.05 0.02 262);
+
+  /* Typography — CSS vars are injected by next/font in the app's root layout */
+  --font-sans: var(--font-archivo), Helvetica, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Motion */
+  --animate-drift: drift 16s ease-in-out infinite;
+  --animate-drift-slow: drift 20s ease-in-out infinite reverse;
+  --animate-drift-contact: drift 18s ease-in-out infinite;
+  --animate-spin-slow: spinSlow 34s linear infinite;
+  --animate-fade-up: fadeUp 0.7s ease both;
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-20px, 24px) scale(1.06);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Theme scopes
+ *
+ * The page alternates dark and light bands section by section. Tailwind
+ * resolves every colour utility as `var(--color-*)` at the element, so
+ * re-declaring the tokens on a wrapper re-themes its whole subtree:
+ *
+ *   <section class="theme-light bg-canvas text-ink">…</section>
+ *
+ * `bg-canvas` and `text-ink` on the wrapper are not optional — the body's
+ * gradient and inherited text colour were already resolved against the dark
+ * values, so the wrapper has to paint its own. The same applies to a
+ * `theme-dark` island nested inside a light band (e.g. a near-black card).
+ * ------------------------------------------------------------------------- */
+
+/* Light: pure white and neutral greys — the enterprise-site look (IFS, WSO2)
+ * rather than a tinted off-white. Text keeps the 262 blue-black hue so it
+ * still belongs to the brand. Lime on white is unreadable as text, so
+ * `accent` drops to an olive-lime with 5:1 contrast while `accent-fill` stays
+ * the brand lime with dark text on it. `surface-raised` is a whisper of grey
+ * so hover rows still register on white. `shade` becomes navy for shadows. */
+.theme-light {
+  color-scheme: light;
+
+  --color-canvas: oklch(1 0 0);
+  --color-canvas-mid: oklch(1 0 0);
+  --color-canvas-end: oklch(1 0 0);
+  --color-surface-marquee: oklch(0.96 0.003 262);
+  --color-surface: oklch(1 0 0);
+  --color-surface-raised: oklch(0.97 0.004 262);
+  --color-surface-deep: oklch(0.157 0.0075 258);
+
+  --color-ink: oklch(0.18 0.035 262);
+  --color-ink-muted: oklch(0.42 0.03 262);
+  --color-ink-dim: oklch(0.46 0.03 262);
+  --color-ink-faint: oklch(0.52 0.03 262);
+  --color-ink-faintest: oklch(0.6 0.03 262);
+
+  --color-on-accent: oklch(0.16 0.035 262);
+
+  --color-line: oklch(0.91 0.006 262);
+  --color-line-soft: oklch(0.85 0.008 262);
+  --color-line-accent: oklch(0.82 0.13 126);
+
+  --color-accent: oklch(0.52 0.16 126);
+  --color-accent-hover: oklch(0.47 0.16 126);
+  --color-accent-link: oklch(0.5 0.16 126);
+  --color-accent-fill: oklch(0.881 0.2245 125.8);
+  --color-accent-fill-hover: oklch(0.91 0.21 126);
+
+  --color-positive: oklch(0.55 0.16 150);
+
+  --color-shade: oklch(0.25 0.04 262);
+}
+
+/* Dark: restores the defaults for an island inside a light band. This is a
+ * verbatim mirror of the `@theme` block above — CSS gives no way to reference
+ * it, so keep the two in sync when a token changes. */
+.theme-dark {
+  color-scheme: dark;
+
+  --color-canvas: oklch(0.14 0.035 262);
+  --color-canvas-mid: oklch(0.18 0.045 262);
+  --color-canvas-end: oklch(0.15 0.035 262);
+  --color-surface-marquee: oklch(0.155 0.035 262);
+  --color-surface: oklch(0.19 0.04 262);
+  --color-surface-raised: oklch(0.2 0.04 262);
+  --color-surface-deep: oklch(0.157 0.0075 258);
+
+  --color-ink: oklch(0.96 0.01 262);
+  --color-ink-muted: oklch(0.72 0.025 262);
+  --color-ink-dim: oklch(0.68 0.025 262);
+  --color-ink-faint: oklch(0.62 0.03 262);
+  --color-ink-faintest: oklch(0.55 0.03 262);
+
+  --color-on-accent: oklch(0.16 0.035 262);
+
+  --color-line: oklch(0.3 0.045 262);
+  --color-line-soft: oklch(0.4 0.05 262);
+  --color-line-accent: oklch(0.45 0.1 126);
+
+  --color-accent: oklch(0.881 0.2245 125.8);
+  --color-accent-hover: oklch(0.91 0.21 126);
+  --color-accent-link: oklch(0.86 0.21 126);
+  --color-accent-fill: oklch(0.881 0.2245 125.8);
+  --color-accent-fill-hover: oklch(0.91 0.21 126);
+
+  --color-positive: oklch(0.78 0.16 150);
+
+  --color-shade: oklch(0.05 0.02 262);
+}
+
+/* Card elevation, tinted from `--color-shade` so it follows the theme: near
+ * invisible on dark (the border does the work there), a soft lift on white.
+ * Written by hand rather than via `shadow-*` so the colour resolves at the
+ * element instead of being inlined at build time. */
+@utility shadow-card {
+  box-shadow:
+    0 1px 2px color-mix(in oklab, var(--color-shade) 8%, transparent),
+    0 18px 44px -18px color-mix(in oklab, var(--color-shade) 32%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The floating header overlays the page: ~78px tall plus its 24px inset.
+       Keep anchor targets clear of it. */
+    scroll-padding-top: 7.5rem;
+  }
+
+  body {
+    margin: 0;
+    /* The logo's black. Light bands paint their own white over it; the
+       contact block and footer sit on it. */
+    background: var(--color-surface-deep);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-link);
+  }
+
+  /* Visible focus for keyboard users only — the design had no focus states,
+     which would have made the site unusable without a mouse. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-accent-fill);
+    color: var(--color-on-accent);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Scroll-reveal
+ *
+ * `.reveal` elements start hidden only once JS has confirmed it can observe
+ * them (see use-scroll-reveal.ts, which adds `.reveal-hidden`). Authoring the
+ * hidden state in CSS instead would leave content permanently invisible if JS
+ * fails.
+ * ------------------------------------------------------------------------- */
+@utility reveal {
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+/* ---------------------------------------------------------------------------
+ * Reduced motion
+ *
+ * The design exposed a `reduceMotion` prop. The OS-level setting is the more
+ * meaningful signal, so honour that too: kill the ambient loops and reveal
+ * everything immediately.
+ * ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}

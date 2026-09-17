@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+/* Design tokens, base layer and motion primitives live in the design system. */
+@import '@company/ui/styles/tokens.css';
+
+/* Tailwind scans the importing file's directory by default, which would miss
+ * the class names used inside @company/ui. Point it at the package source so
+ * utilities referenced only by design-system components are still generated. */
+@source "../../../../packages/ui/src";

@@ -1,0 +1,8 @@
+# Drop site imagery here.
+#
+# Referenced from components as `/images/<file>`, e.g.:
+#   <HeroVisual src="/images/hero.jpg" />
+#   <ImageSlot src="/images/team.jpg" alt="The team at work" placeholder="…" />
+#
+# Until a real file is supplied, ImageSlot renders a designed empty state at
+# the correct dimensions, so the layout does not shift when you add one.

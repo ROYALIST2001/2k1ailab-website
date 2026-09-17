@@ -1,0 +1,27 @@
+# Keep the build context small and prevent host artefacts leaking into layers.
+**/node_modules
+**/.next
+**/out
+**/dist
+**/build
+**/coverage
+
+.git
+.gitignore
+.github
+
+# Never bake secrets into an image.
+.env
+.env.*
+!.env.example
+
+# Editor/tooling
+.vscode
+.idea
+.claude
+**/*.tsbuildinfo
+
+# Not needed at runtime
+design
+README.md
+**/*.md
