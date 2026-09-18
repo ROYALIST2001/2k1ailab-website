@@ -6,4 +6,4 @@ export type {
   SubmissionKind,
   SubmissionResult,
 } from './submission/submission';
-export type { FaqItem, ProcessStep, Role, Service } from './catalog';
+export type { BuildCategory, FaqItem, ProcessStep, Role, Service } from './catalog';

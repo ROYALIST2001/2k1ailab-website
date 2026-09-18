@@ -38,3 +38,9 @@ export type Role = {
   responsibilities: readonly string[];
   requirements: readonly string[];
 };
+
+/** A group of build capabilities, listed in the hero panel. */
+export type BuildCategory = {
+  title: string;
+  items: readonly string[];
+};
