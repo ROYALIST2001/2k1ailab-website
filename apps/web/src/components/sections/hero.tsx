@@ -1,5 +1,6 @@
-import { HeroVisual } from '@/components/sections/hero-visual';
 import { ArrowRight, ButtonLink, Tile } from '@company/ui';
+
+import { WhatWeBuild } from '@/components/sections/what-we-build';
 import { siteConfig } from '@/config/site';
 
 export function Hero() {
@@ -16,7 +17,7 @@ export function Hero() {
       />
 
       {/* Top padding clears the floating header, which overlays the page. */}
-      <div className="relative mx-auto grid max-w-[1320px] items-center gap-16 px-6 pt-36 pb-20 md:px-12 md:pt-[150px] md:pb-[110px] lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="relative mx-auto grid max-w-[1320px] items-center gap-16 px-6 pt-36 pb-20 md:px-12 md:pt-[150px] md:pb-[110px] lg:grid-cols-2">
         <Tile className="relative z-1 p-8 md:p-11">
           <div className="animate-fade-up border-line-accent text-accent mb-8 inline-flex items-center gap-2.5 rounded-full border px-4 py-2 font-mono text-[13px] tracking-[0.08em] whitespace-nowrap uppercase">
             <span aria-hidden="true" className="bg-accent inline-block h-1.5 w-1.5 rounded-full" />
@@ -47,11 +48,8 @@ export function Hero() {
           </div>
         </Tile>
 
-        <div className="relative z-1">
-          <HeroVisual
-            src="/images/2K1-website-services-1170x1030.png"
-            alt="What we build: websites, web and mobile apps, e-commerce; POS, ERP, HR, accounting, inventory, booking and school management systems; AI chatbots, agents, integration and workflow automation; IoT, smart devices, cloud and custom software."
-          />
+        <div className="animate-fade-up relative z-1 [animation-delay:0.32s]">
+          <WhatWeBuild />
         </div>
       </div>
     </section>
