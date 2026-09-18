@@ -19,7 +19,8 @@ export const faqItems: readonly FaqItem[] = [
   },
   {
     question: 'Do you sign NDAs?',
-    answer: 'Yes. Happy to sign one before we discuss any specifics of your project.',
+    answer:
+      "It depends on the size of the project and who we're working with. For larger pieces of work, yes. Ask us before you share anything sensitive and we'll tell you where we stand.",
   },
   {
     question: 'What happens after launch?',

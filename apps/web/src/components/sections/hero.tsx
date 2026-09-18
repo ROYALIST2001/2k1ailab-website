@@ -18,8 +18,8 @@ export function Hero() {
 
       {/* Top padding clears the floating header, which overlays the page. */}
       <div className="relative mx-auto grid max-w-[1320px] items-center gap-16 px-6 pt-36 pb-20 md:px-12 md:pt-[150px] md:pb-[110px] lg:grid-cols-2">
-        <Tile className="relative z-1 p-8 md:p-11">
-          <div className="animate-fade-up border-line-accent text-accent mb-8 inline-flex items-center gap-2.5 rounded-full border px-4 py-2 font-mono text-[13px] tracking-[0.08em] whitespace-nowrap uppercase">
+        <Tile className="relative z-1 min-w-0 p-8 md:p-11">
+          <div className="animate-fade-up border-line-accent text-accent mb-8 inline-flex items-center gap-2.5 rounded-full border px-4 py-2 font-mono text-[13px] tracking-[0.08em] uppercase">
             <span aria-hidden="true" className="bg-accent inline-block h-1.5 w-1.5 rounded-full" />
             Technology partner for your business
           </div>
@@ -48,7 +48,7 @@ export function Hero() {
           </div>
         </Tile>
 
-        <div className="animate-fade-up relative z-1 [animation-delay:0.32s]">
+        <div className="animate-fade-up relative z-1 min-w-0 [animation-delay:0.32s]">
           <WhatWeBuild />
         </div>
       </div>

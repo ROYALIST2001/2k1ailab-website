@@ -9,6 +9,7 @@ import { projectTypeOptions } from '@/content/project-types';
 const INITIAL = {
   name: '',
   email: '',
+  phone: '',
   company: '',
   projectType: '',
   message: '',
@@ -85,6 +86,21 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
+        <Field id="phone" label="Mobile number" required error={form.errors.phone}>
+          <Input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="+94 77 123 4567"
+            value={form.values.phone}
+            invalid={Boolean(form.errors.phone)}
+            aria-describedby={form.errors.phone ? 'phone-error' : undefined}
+            onChange={(event) => form.setValue('phone', event.target.value)}
+          />
+        </Field>
+
         <Field id="company" label="Company" error={form.errors.company}>
           <Input
             id="company"
@@ -95,27 +111,27 @@ export function ContactForm() {
             onChange={(event) => form.setValue('company', event.target.value)}
           />
         </Field>
-
-        <Field id="projectType" label="What do you need?" required error={form.errors.projectType}>
-          <Select
-            id="projectType"
-            name="projectType"
-            value={form.values.projectType}
-            invalid={Boolean(form.errors.projectType)}
-            aria-describedby={form.errors.projectType ? 'projectType-error' : undefined}
-            onChange={(event) => form.setValue('projectType', event.target.value)}
-          >
-            <option value="" disabled>
-              Choose one…
-            </option>
-            {projectTypeOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Select>
-        </Field>
       </div>
+
+      <Field id="projectType" label="What do you need?" required error={form.errors.projectType}>
+        <Select
+          id="projectType"
+          name="projectType"
+          value={form.values.projectType}
+          invalid={Boolean(form.errors.projectType)}
+          aria-describedby={form.errors.projectType ? 'projectType-error' : undefined}
+          onChange={(event) => form.setValue('projectType', event.target.value)}
+        >
+          <option value="" disabled>
+            Choose one…
+          </option>
+          {projectTypeOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+      </Field>
 
       <Field
         id="message"
