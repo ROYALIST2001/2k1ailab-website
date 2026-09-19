@@ -35,6 +35,7 @@ function render(submission: Submission, id: string): { subject: string; text: st
       '',
       `Name:     ${name}`,
       `Email:    ${payload.email}`,
+      `Phone:    ${oneLine(payload.phone)}`,
       `Company:  ${payload.company ? oneLine(payload.company) : '—'}`,
       `Project:  ${payload.projectType}`,
     );

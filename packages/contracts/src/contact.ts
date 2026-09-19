@@ -21,6 +21,23 @@ export const contactSchema = z.object({
     .email('That does not look like a valid email address.')
     .max(254, 'That email address is too long.'),
 
+  /**
+   * Mobile number. Required, but the format is deliberately permissive:
+   * visitors write numbers with spaces, dashes, brackets and country codes in
+   * every combination, and rejecting those is a bad trade for a contact form.
+   * The digit count is what is actually checked — 7 is the shortest national
+   * number in use, 15 the E.164 maximum.
+   */
+  phone: z
+    .string()
+    .trim()
+    .min(1, 'Please enter your mobile number.')
+    .max(32, 'That number is too long.')
+    .refine((value) => {
+      const digits = value.replace(/\D/g, '').length;
+      return digits >= 7 && digits <= 15;
+    }, 'Please enter a valid mobile number, including the country code.'),
+
   company: z
     .string()
     .trim()

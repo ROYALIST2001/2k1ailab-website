@@ -29,8 +29,14 @@ export const siteConfig = {
    */
   url: 'https://2k1ailab.com',
 
-  /** Disciplines shown in the hero eyebrow and the marquee. */
-  disciplines: ['Software', 'Design', 'AI', 'Automation', 'IoT', 'Support'],
+  /**
+   * WhatsApp number for the floating chat button, digits only: country code
+   * first, no `+`, spaces or dashes (Sri Lanka example: 94771234567).
+   *
+   * Empty string hides the button entirely, which is the current state — there
+   * is no number yet, and a wa.me link to nothing opens an error page.
+   */
+  whatsapp: '',
 
   /**
    * Toggles the "Taking on new projects this quarter" badge in the contact

@@ -21,6 +21,8 @@ export type ProjectType = (typeof PROJECT_TYPES)[number];
 export type ContactEnquiry = {
   name: string;
   email: string;
+  /** Mobile number, as typed. Stored unformatted — see the contracts schema. */
+  phone: string;
   company?: string;
   projectType: ProjectType;
   message: string;

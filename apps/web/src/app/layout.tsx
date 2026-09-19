@@ -3,6 +3,7 @@ import { Archivo, JetBrains_Mono } from 'next/font/google';
 
 import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
+import { WhatsAppButton } from '@/components/layout/whatsapp-button';
 import { ScrollReveal } from '@/components/providers/scroll-reveal';
 import { siteConfig } from '@/config/site';
 import { env } from '@/config/env';
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <SiteFooter />
 
+        <WhatsAppButton />
         <ScrollReveal />
       </body>
     </html>

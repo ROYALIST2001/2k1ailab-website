@@ -60,7 +60,7 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-6 px-5 py-3.5 md:px-8">
           <Link
             href="/"
-            className="text-ink hover:text-ink flex items-center gap-3 text-xl font-semibold tracking-[0.14em]"
+            className="text-ink hover:text-ink flex items-center gap-3 text-lg font-semibold tracking-[0.12em] whitespace-nowrap lg:gap-3 lg:text-xl lg:tracking-[0.14em]"
           >
             {/* Decorative: the adjacent name is the link's accessible label. */}
             <Image
@@ -77,7 +77,7 @@ export function SiteHeader() {
           {/* Desktop nav */}
           <nav
             aria-label="Main"
-            className="hidden items-center gap-[22px] font-mono text-sm tracking-[0.02em] whitespace-nowrap md:flex"
+            className="hidden items-center gap-4 font-mono text-sm tracking-[0.02em] whitespace-nowrap md:flex lg:gap-[22px]"
           >
             {siteConfig.nav.map((item) => (
               <Link
