@@ -6,11 +6,7 @@ import { siteConfig } from '@/config/site';
 export function Hero() {
   return (
     <section id="top" className="theme-light bg-canvas text-ink relative overflow-hidden">
-      {/* Ambient blur orbs. Purely decorative. */}
-      <div
-        aria-hidden="true"
-        className="animate-drift bg-accent-fill/20 pointer-events-none absolute -top-[100px] -left-[90px] h-[380px] w-[380px] rounded-full blur-[80px]"
-      />
+      {/* Ambient blur orb. Purely decorative. */}
       <div
         aria-hidden="true"
         className="animate-drift-slow bg-shade/8 pointer-events-none absolute right-[8%] -bottom-[140px] h-[320px] w-[320px] rounded-full blur-[90px]"
