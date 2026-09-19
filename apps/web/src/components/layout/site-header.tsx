@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { ButtonLink, cn } from '@company/ui';
 
@@ -25,13 +25,16 @@ import { siteConfig } from '@/config/site';
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
 
   // Close on route change, otherwise the panel stays open over the new page.
+  // Not sufficient alone: same-page anchors like /#services leave the pathname
+  // unchanged, so each link closes the panel itself too.
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Escape closes; body scroll locks while the panel covers the viewport.
+  // Escape or a tap outside closes; body scroll locks while the panel is up.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -39,12 +42,20 @@ export function SiteHeader() {
       if (event.key === 'Escape') setMenuOpen(false);
     };
 
+    // pointerdown rather than click: it fires before focus and before any
+    // element under the pointer can be removed, so the check cannot miss.
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setMenuOpen(false);
+    };
+
     document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
     return () => {
       document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
       document.body.style.overflow = previousOverflow;
     };
   }, [menuOpen]);
@@ -52,6 +63,7 @@ export function SiteHeader() {
   return (
     <div className="sticky top-0 z-50 flow-root h-0">
       <header
+        ref={headerRef}
         className={cn(
           'border-line mx-4 mt-4 overflow-hidden rounded-[20px] border md:mx-6 md:mt-6',
           'bg-canvas/85 backdrop-blur-[12px]',
@@ -126,6 +138,7 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    onClick={() => setMenuOpen(false)}
                     className="border-line/60 text-ink-dim hover:text-ink block border-b py-4 font-mono text-sm"
                   >
                     {item.label}
@@ -137,6 +150,7 @@ export function SiteHeader() {
               href="/contact"
               variant="primary"
               size="md"
+              onClick={() => setMenuOpen(false)}
               className="mt-6 w-full font-mono"
             >
               Contact
